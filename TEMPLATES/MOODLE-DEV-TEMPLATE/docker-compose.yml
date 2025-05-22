@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  moodle:
+    image: moodlehq/moodle-php-apache:8.3
+    ports:
+      - "${MOODLE_PORT}:80"
+    volumes:
+      - ./moodle:/var/www/html
+      - moodledata:/var/www/moodledata
+      - ./config/php.ini:/usr/local/etc/php/conf.d/custom.ini
+    depends_on:
+      - mariadb
+
+  mariadb:
+    image: mariadb:10.6
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - mariadb_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: mariadb
+      PMA_PORT: 3306
+    ports:
+      - "${PHPMYADMIN_PORT}:80"
+    depends_on:
+      - mariadb
+
+volumes:
+  moodledata:
+  mariadb_data:
