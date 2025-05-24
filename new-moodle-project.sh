@@ -6,6 +6,10 @@ set -e
 read -rp "Enter project name (no spaces): " PROJECT
 SAFE_PROJECT=$(echo "$PROJECT" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
 
+# Ensure Projects folder exists
+mkdir -p Projects
+cd Projects || exit 1
+
 # Find 3 consecutive free ports
 get_free_port_range() {
   while true; do

@@ -12,6 +12,10 @@
 ## Linux (not final)
 
 1. Open the workspace folder in your **terminal**.
+2. Add permissions
+    ```
+    chmod +x new-moodle-project.sh
+    ```
 2. Run the following command:
     ```bash
     ./new-moodle-project.sh
