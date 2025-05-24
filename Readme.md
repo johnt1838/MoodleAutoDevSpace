@@ -9,7 +9,7 @@
     ```
 3. Follow the on-screen instructions.
 
-## Linux
+## Linux (not final)
 
 1. Open the workspace folder in your **terminal**.
 2. Run the following command:
